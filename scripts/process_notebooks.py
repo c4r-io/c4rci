@@ -495,7 +495,7 @@ def test_redirect_colab_badge_to_main_branch():
 
     original = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "non-default-repo/blob/W1D1-updates/tutorials/W1D1_ModelTypes/"
+        "default-repo/blob/W1D1-updates/tutorials/W1D1_ModelTypes/"
         "W1D1_Tutorial1.ipynb\""
     )
     cell = {"source": original}
