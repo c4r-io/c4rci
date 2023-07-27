@@ -495,7 +495,7 @@ def test_redirect_colab_badge_to_main_branch():
 
     original = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "course-content/blob/W1D1-updates/tutorials/W1D1_ModelTypes/"
+        "non-default-repo/blob/W1D1-updates/tutorials/W1D1_ModelTypes/"
         "W1D1_Tutorial1.ipynb\""
     )
     cell = {"source": original}
@@ -503,7 +503,7 @@ def test_redirect_colab_badge_to_main_branch():
 
     expected = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "course-content/blob/main/tutorials/W1D1_ModelTypes/"
+        "default-repo/blob/main/tutorials/W1D1_ModelTypes/"
         "W1D1_Tutorial1.ipynb\""
     )
 
@@ -536,7 +536,7 @@ def test_redirect_colab_badge_to_student_version():
 
     original = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "course-content/blob/main/tutorials/W1D1_ModelTypes/"
+        "default-repo/blob/main/tutorials/W1D1_ModelTypes/"
         "W1D1_Tutorial1.ipynb\""
     )
 
@@ -545,7 +545,7 @@ def test_redirect_colab_badge_to_student_version():
 
     expected = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "course-content/blob/main/tutorials/W1D1_ModelTypes/student/"
+        "default-repo/blob/main/tutorials/W1D1_ModelTypes/student/"
         "W1D1_Tutorial1.ipynb\""
     )
 

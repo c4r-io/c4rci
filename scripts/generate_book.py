@@ -6,7 +6,7 @@ import traceback
 import json
 from bs4 import BeautifulSoup
 
-REPO = os.environ.get("NMA_REPO", "course-content")
+REPO = os.environ.get("C4R_REPO", "default-repo")
 ARG = sys.argv[1]
 
 

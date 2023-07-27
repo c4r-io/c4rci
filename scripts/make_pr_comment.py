@@ -9,7 +9,7 @@ import sys
 import argparse
 import subprocess
 
-REPO = os.environ.get("NMA_REPO", "course-content")
+REPO = os.environ.get("C4R_REPO", "default-repo")
 
 def main(arglist):
 
