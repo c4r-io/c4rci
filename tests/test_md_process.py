@@ -5,7 +5,7 @@ import nbformat
 
 @fixture
 def cmd():
-    return ["python", "../scripts/md_process.py"]
+    return ["python", "scripts/md_process.py"]
 
 def md_to_ipynb_conversion_test(cmd, md_file):
     # Construct full path for .md and .ipynb files
