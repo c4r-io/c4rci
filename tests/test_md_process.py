@@ -30,12 +30,22 @@ def md_to_ipynb_conversion_test(cmd, md_file):
     return ipynb_content
 
 def test_simple_conversion(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "test1.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "simple_conversion_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 1
     assert nb.cells[0].cell_type == 'markdown'
-    assert "Test 1: Simple Conversion" in nb.cells[0].source
+    assert "Simple Conversion Test" in nb.cells[0].source
+
+def test_multiple_sections(cmd):
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "multiple_sections_test.md")
+    nb = nbformat.reads(ipynb_content, as_version=4)
+    
+    assert len(nb.cells) == 3
+    assert all(cell.cell_type == 'markdown' for cell in nb.cells)
+    assert "Multiple Sections Test" in nb.cells[0].source
+    assert "Introduction" in nb.cells[1].source
+    assert "Another Section" in nb.cells[2].source
 
 def test_default_embedding(cmd):
     ipynb_content = md_to_ipynb_conversion_test(cmd, "default_embedding_test.md")
@@ -63,16 +73,5 @@ def test_regular_link(cmd):
     assert nb.cells[0].cell_type == 'markdown'
     assert "Regular Link Test" in nb.cells[0].source
     assert '[This should remain a regular link](https://jackliddy.github.io/designTest1)' in nb.cells[0].source
-
-
-def test_multiple_sections(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "test3.md")
-    nb = nbformat.reads(ipynb_content, as_version=4)
-    
-    assert len(nb.cells) == 3
-    assert all(cell.cell_type == 'markdown' for cell in nb.cells)
-    assert "Test 3: Multiple Sections" in nb.cells[0].source
-    assert "Introduction" in nb.cells[1].source
-    assert "Another Section" in nb.cells[2].source
 
 # ... Add more tests as needed
