@@ -3,12 +3,13 @@ import re
 import nbformat
 from nbformat.v4 import new_markdown_cell, new_notebook
 
+
 def md_to_notebook(md_content):
     # Start with an empty notebook
     notebook = new_notebook()
 
     # Split the markdown content into "cells" at every double newline
-    # This is just a basic approach; you might want to refine this
+    # This is just a basic approach we may want to refine, or just dump to one cell
     cells = md_content.split('\n\n')
 
     for cell in cells:
@@ -20,12 +21,19 @@ def md_to_notebook(md_content):
 
     return notebook
 
-def replace_links_with_iframes(content):
-    # This is a simple example. Replace the regex pattern with whatever you need.
-    pattern = r'https://www\.example\.com/[\w/]+'
-    replacement = r'<iframe src="\g<0>" width="600" height="400"></iframe>'
 
-    return re.sub(pattern, replacement, content)
+def replace_links_with_iframes(content):
+    # This pattern matches links labeled [Embed] or [Embed-widthxheight]
+    pattern = r'\[Embed(?:-(\d+)x(\d+))?\]\((https?://[^\)]+)\)'
+    
+    def repl(match):
+        width = match.group(1) or '600'
+        height = match.group(2) or '400'
+        url = match.group(3)
+        return f'<iframe src="{url}" width="{width}" height="{height}"></iframe>'
+    
+    return re.sub(pattern, repl, content)
+
 
 def main():
     for root, _, files in os.walk('.'):
