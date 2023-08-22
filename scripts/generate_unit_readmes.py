@@ -1,4 +1,4 @@
-"""Write a directory of tutorial notebooks to the README file.
+"""Write a directory of unit notebooks to the README file.
 
 Run this script from the root of the github repository.
 
@@ -8,12 +8,12 @@ from glob import glob
 import yaml
 
 REPO = os.environ.get("C4R_REPO", "default-repo")
-MAIN_BRANCH = os.environ.get("NMA_MAIN_BRANCH", "main")
+MAIN_BRANCH = os.environ.get("C4R_MAIN_BRANCH", "main")
 
 
 def main():
 
-    # Initialize the lines in tutorials/README.md
+    # Initialize the lines in units/README.md
     course_readme_text = [
     ]
 
@@ -33,7 +33,7 @@ def main():
 
     day_anchors = {}
 
-    day_paths = sorted(glob("tutorials/W?D?_*"))
+    day_paths = sorted(glob("units/C?U?_*"))
     for day_path in day_paths:
 
         day_name = os.path.split(day_path)[-1]
@@ -140,13 +140,13 @@ def main():
     course_readme_text = course_readme_header + course_readme_text
 
     # Write the course README file
-    with open("tutorials/README.md", "w") as f:
+    with open("units/README.md", "w") as f:
         f.write("\n".join(course_readme_text))
 
 
 def load_youtube_playlist_urls():
     """Create a mapping from day code to youtube link based on text file."""
-    with open('tutorials/materials.yml') as fh:
+    with open('units/materials.yml') as fh:
         materials = yaml.load(fh, Loader=yaml.FullLoader)
     days = [m['day'] for m in materials]
     playlists = [m['playlist'] for m in materials]
@@ -155,7 +155,7 @@ def load_youtube_playlist_urls():
 
 def load_slide_urls():
     """Create a hierarchical mapping to slide PDF urls based on text file."""
-    with open('tutorials/materials.yml') as fh:
+    with open('units/materials.yml') as fh:
         materials = yaml.load(fh, Loader=yaml.FullLoader)
     slide_links = {}
     for ind, day_dict in enumerate(materials):
