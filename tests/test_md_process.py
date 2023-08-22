@@ -7,18 +7,16 @@ import nbformat
 def cmd():
     return ["python", "scripts/md_process.py"]
 
-def md_to_ipynb_conversion_test(cmd, md_file):
-    # Construct full path for .md and .ipynb files
-    md_path = os.path.join("units", md_file)
-    ipynb_file = md_file.replace('.md', '.ipynb')
-    ipynb_path = os.path.join("units", ipynb_file)
+def md_to_ipynb_conversion_test(cmd, md_path):
+    # Construct the full path for .ipynb file from the md_path
+    ipynb_path = md_path.replace('.md', '.ipynb')
 
     # Delete the .ipynb file if it exists
     if os.path.exists(ipynb_path):
         os.remove(ipynb_path)
     
-    # Run the script to process .md files
-    run(cmd)
+    # Run the script to process the specific .md file provided in the full path
+    run(cmd + [md_path])
     
     # Check if the .ipynb file was created
     assert os.path.exists(ipynb_path), f"File {ipynb_path} not generated"
@@ -28,6 +26,7 @@ def md_to_ipynb_conversion_test(cmd, md_file):
         ipynb_content = f.read()
 
     return ipynb_content
+
 
 def test_simple_conversion(cmd):
     ipynb_content = md_to_ipynb_conversion_test(cmd, "simple_conversion_test.md")
