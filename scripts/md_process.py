@@ -9,7 +9,6 @@ def md_to_notebook(md_content):
     notebook = new_notebook()
 
     # Split the markdown content into "cells" at every double newline
-    # This is just a basic approach we may want to refine, or just dump to one cell
     cells = md_content.split('\n\n')
 
     for cell in cells:
@@ -35,18 +34,25 @@ def replace_links_with_iframes(content):
     return re.sub(pattern, repl, content)
 
 
-def main():
-    for root, _, files in os.walk('.'):
-        for file in files:
-            if file.endswith('.md'):
-                with open(os.path.join(root, file), 'r') as f:
-                    md_content = f.read()
+def convert_md_to_ipynb(input_md):
+    # Read the markdown content from the provided path
+    with open(input_md, 'r') as f:
+        md_content = f.read()
 
-                notebook = md_to_notebook(md_content)
+    # Convert the markdown content to a notebook
+    notebook = md_to_notebook(md_content)
 
-                # Save as .ipynb
-                with open(os.path.join(root, file.replace('.md', '.ipynb')), 'w') as f:
-                    f.write(nbformat.writes(notebook))
+    # Construct the output notebook's path
+    output_ipynb = input_md.replace('.md', '.ipynb')
 
-if __name__ == '__main__':
-    main()
+    # Save as .ipynb
+    with open(output_ipynb, 'w') as f:
+        f.write(nbformat.writes(notebook))
+
+    return output_ipynb
+
+
+if __name__ == "__main__":
+    input_md_path = os.path.abspath(sys.argv[1])
+    output_notebook = convert_md_to_ipynb(input_md_path)
+    print(output_notebook)  # This is captured in the GitHub action script.
