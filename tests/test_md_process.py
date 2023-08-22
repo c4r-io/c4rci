@@ -9,9 +9,9 @@ def cmd():
 
 def md_to_ipynb_conversion_test(cmd, md_file):
     # Construct full path for .md and .ipynb files
-    md_path = os.path.join("..", "units", md_file)
+    md_path = os.path.join("units", md_file)
     ipynb_file = md_file.replace('.md', '.ipynb')
-    ipynb_path = os.path.join("..", "units", ipynb_file)
+    ipynb_path = os.path.join("units", ipynb_file)
 
     # Delete the .ipynb file if it exists
     if os.path.exists(ipynb_path):
