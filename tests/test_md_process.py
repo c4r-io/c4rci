@@ -37,15 +37,33 @@ def test_simple_conversion(cmd):
     assert nb.cells[0].cell_type == 'markdown'
     assert "Test 1: Simple Conversion" in nb.cells[0].source
 
-def test_embedding_urls(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "test2.md")
+def test_default_embedding(cmd):
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "default_embedding_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 2
     assert nb.cells[0].cell_type == 'markdown'
-    assert "Test 2: Embedding URLs" in nb.cells[0].source
-    assert nb.cells[1].cell_type == 'code'
-    assert "iframe" in nb.cells[1].source
+    assert "Default Embedding Test" in nb.cells[0].source
+    assert '<iframe src="https://jackliddy.github.io/designTest1" width="600" height="400"></iframe>' in nb.cells[1].source
+
+def test_custom_dimension_embedding(cmd):
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "custom_dimension_embedding_test.md")
+    nb = nbformat.reads(ipynb_content, as_version=4)
+    
+    assert len(nb.cells) == 2
+    assert nb.cells[0].cell_type == 'markdown'
+    assert "Custom Dimension Embedding Test" in nb.cells[0].source
+    assert '<iframe src="https://jackliddy.github.io/designTest1" width="800" height="500"></iframe>' in nb.cells[1].source
+
+def test_regular_link(cmd):
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "regular_link_test.md")
+    nb = nbformat.reads(ipynb_content, as_version=4)
+    
+    assert len(nb.cells) == 1
+    assert nb.cells[0].cell_type == 'markdown'
+    assert "Regular Link Test" in nb.cells[0].source
+    assert '[This should remain a regular link](https://jackliddy.github.io/designTest1)' in nb.cells[0].source
+
 
 def test_multiple_sections(cmd):
     ipynb_content = md_to_ipynb_conversion_test(cmd, "test3.md")
