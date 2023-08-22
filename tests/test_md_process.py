@@ -41,7 +41,7 @@ def test_multiple_sections(cmd):
     ipynb_content = md_to_ipynb_conversion_test(cmd, "multiple_sections_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
-    assert len(nb.cells) == 3
+    assert len(nb.cells) == 4
     assert all(cell.cell_type == 'markdown' for cell in nb.cells)
     assert "Multiple Sections Test" in nb.cells[0].source
     assert "Introduction" in nb.cells[1].source
