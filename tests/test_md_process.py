@@ -29,7 +29,7 @@ def md_to_ipynb_conversion_test(cmd, md_path):
 
 
 def test_simple_conversion(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "simple_conversion_test.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "units/simple_conversion_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 1
@@ -37,7 +37,7 @@ def test_simple_conversion(cmd):
     assert "Simple Conversion Test" in nb.cells[0].source
 
 def test_multiple_sections(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "multiple_sections_test.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "units/multiple_sections_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 4
@@ -47,7 +47,7 @@ def test_multiple_sections(cmd):
     assert "Another Section" in nb.cells[2].source
 
 def test_default_embedding(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "default_embedding_test.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "units/default_embedding_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 4
@@ -56,7 +56,7 @@ def test_default_embedding(cmd):
     assert '<iframe src="https://jackliddy.github.io/designTest1" width="600" height="400"></iframe>' in nb.cells[2].source
 
 def test_custom_dimension_embedding(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "custom_dimension_embedding_test.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "units/custom_dimension_embedding_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 4
@@ -65,7 +65,7 @@ def test_custom_dimension_embedding(cmd):
     assert '<iframe src="https://jackliddy.github.io/designTest1" width="800" height="500"></iframe>' in nb.cells[2].source
 
 def test_regular_link(cmd):
-    ipynb_content = md_to_ipynb_conversion_test(cmd, "regular_link_test.md")
+    ipynb_content = md_to_ipynb_conversion_test(cmd, "units/regular_link_test.md")
     nb = nbformat.reads(ipynb_content, as_version=4)
     
     assert len(nb.cells) == 4
