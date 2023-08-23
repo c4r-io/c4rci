@@ -32,7 +32,7 @@ from PIL import Image
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
-REPO = os.environ.get("C4R_REPO", "default-repo")
+REPO = os.environ.get("C4R_REPO", "sample-publishing")
 MAIN_BRANCH = os.environ.get("C4R_MAIN_BRANCH", "main")
 
 GITHUB_RAW_URL = (
@@ -558,7 +558,7 @@ def add_kaggle_badge(cell, nb_path):
         badge_link = "https://kaggle.com/static/images/open-in-kaggle.svg"
         service = "https://kaggle.com/kernels/welcome?src="
         alter = "Open in Kaggle"
-        basic_url = "https://raw.githubusercontent.com/NeuromatchAcademy"
+        basic_url = "https://raw.githubusercontent.com/c4r-io"
         a = f'<a href=\"{service}{basic_url}/{REPO}/{MAIN_BRANCH}/{nb_path}\" target=\"_parent\"><img src=\"{badge_link}\" alt=\"{alter}\"/></a>'
         cell["source"] += f' &nbsp; {a}'
 
@@ -600,7 +600,7 @@ def exit(errors):
 def parse_args(arglist):
     """Handle the command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Process neuromatch unit notebooks",
+        description="Process c4r unit notebooks",
     )
     parser.add_argument(
         "files",
