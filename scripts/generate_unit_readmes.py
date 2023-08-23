@@ -66,7 +66,7 @@ def main():
         instructor_notebooks = get_instructor_links(notebooks)
         student_notebooks = get_student_links(notebooks)
 
-        # Write the day information into the course README
+        # Write the unit information into the course README
         course_readme_text.extend([
             f"## {unit_code} - {topic}",
             "",
@@ -104,7 +104,7 @@ def main():
         # Now make the unit-specific README
         # with links to both instructor and student versions
         unit_readme_text = [
-            f"# {day_code} - {topic}",
+            f"# {unit_code} - {topic}",
             "",
             "## Instructor notebooks",
             "",
@@ -117,7 +117,7 @@ def main():
         ])
         unit_readme_text.extend(write_badge_table(student_notebooks))
 
-        # Write the day README file
+        # Write the unit README file
         with open(f"{unit_path}/README.md", "w") as f:
             f.write("\n".join(unit_readme_text))
 
@@ -145,7 +145,7 @@ def main():
 
 
 def load_youtube_playlist_urls():
-    """Create a mapping from day code to youtube link based on text file."""
+    """Create a mapping from unit code to youtube link based on text file."""
     with open('units/materials.yml') as fh:
         materials = yaml.load(fh, Loader=yaml.FullLoader)
     units = [m['unit'] for m in materials]
