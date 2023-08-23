@@ -17,19 +17,20 @@ def main():
     course_readme_text = [
     ]
 
-    try:
-        playlist_urls = load_youtube_playlist_urls()
-    except Exception as err:
-        print("Encountered error while loading youtube playlist links")
-        print(err)
-        playlist_urls = {}
+    ### once we have slides and youtube videos uncomment and test this
+    #try:
+    #    playlist_urls = load_youtube_playlist_urls()
+    #except Exception as err:
+    #    print("Encountered error while loading youtube playlist links")
+    #    print(err)
+    #    playlist_urls = {}
 
-    try:
-        slide_urls = load_slide_urls()
-    except Exception as err:
-        print("Encountered error while loading slide links")
-        print(err)
-        slide_urls = {}
+    #try:
+    #    slide_urls = load_slide_urls()
+    #except Exception as err:
+    #    print("Encountered error while loading slide links")
+    #    print(err)
+    #    slide_urls = {}
 
     unit_anchors = {}
 
