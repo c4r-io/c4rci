@@ -55,5 +55,8 @@ def convert_md_to_ipynb(input_md):
 
 if __name__ == "__main__":
     input_md_path = os.path.abspath(sys.argv[1])
+    # Check that input is a .md file
+    if not input_md_path.lower().endswith('.md'):
+        raise ValueError(f"Expected a .md file, but received: {input_md_path}")
     output_notebook = convert_md_to_ipynb(input_md_path)
     print(output_notebook)  # This is captured in the GitHub action script.
