@@ -42,7 +42,7 @@ def main():
 
         # Split the UpperCamelCase topic name into separate words
         topic_words = []
-        for letter in unit_code:
+        for letter in unit_topic:
             if letter.isupper():
                 topic_words.append(letter)
             else:
