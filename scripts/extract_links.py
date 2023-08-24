@@ -26,22 +26,22 @@ def youtube_url(video_id):
 def osf_url(link_id):
     return f"https://osf.io/download/{link_id}"
 
-def tutorial_order(fname):
+def miniunit_order(fname):
     fname = os.path.basename(fname)
     try:
         first, last = fname.split("_")
     except ValueError:
         return (99, 99, fname)
     if first.startswith("Bonus"):
-        week, day = 9, 9
+        category, unit = 9, 9
     else:
         try:
-            week, day = int(first[1]), int(first[3])
+            category, unit = int(first[1]), int(first[3])
         except ValueError:
-            week, day = 9, 9
+            categyory, unit = 9, 9
     if last.startswith("Intro"):
         order = 0
-    elif last.startswith("Tutorial"):
+    elif last.startswith("MiniUnit"):
         order = int(last[8])
     elif last.startswith("Outro"):
         order = 10
@@ -49,7 +49,7 @@ def tutorial_order(fname):
         order = 20
     else:
         order = 30
-    return (week, day, order)
+    return (category, unit, order)
 
 def main(arglist):
     """Process IPython notebooks from a list of files."""
@@ -66,7 +66,7 @@ def main(arglist):
     videos = collections.defaultdict(list)
     slides = collections.defaultdict(list)
 
-    for nb_path in sorted(nb_paths, key=tutorial_order):
+    for nb_path in sorted(nb_paths, key=miniunit_order):
         # Load the notebook structure
         with open(nb_path) as f:
             nb = nbformat.read(f, nbformat.NO_CONVERT)
@@ -109,8 +109,8 @@ def main(arglist):
                             sys.stderr.write(str(e) + "\n")
                             sys.stderr.write(f"Skipping slide {url}\n")
                             continue
-                        if 'DaySummary' in nb_name:
-                            filename = os.path.splitext(filename.replace("_", ""))[0] + '_DaySummary.pdf'
+                        if 'UnitSummary' in nb_name:
+                            filename = os.path.splitext(filename.replace("_", ""))[0] + '_UnitSummary.pdf'
                         slides[url] = filename
 
     print(json.dumps({"videos": videos, "slides": slides}, indent=4))
@@ -119,7 +119,7 @@ def main(arglist):
 def parse_args(arglist):
     """Handle the command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Process neuromatch tutorial notebooks"
+        description="Process c4r MiniUnit notebooks"
     )
     parser.add_argument(
         "--noyoutube",

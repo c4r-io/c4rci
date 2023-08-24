@@ -240,7 +240,7 @@ def has_solution(cell):
 def parse_args(arglist):
     """Handle the command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Process neuromatch tutorial notebooks",
+        description="Process C4R MiniUnit notebooks",
     )
     parser.add_argument(
         "files",

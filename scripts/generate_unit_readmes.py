@@ -184,10 +184,10 @@ def write_badge_table(notebooks):
 
     # Add badges
     for local_path in notebook_list:
-        # Extract type of file (intro vs outro vs tutorial)
+        # Extract type of file (intro vs outro vs MiniUnit)
         notebook_name = local_path.split('_')[-1].split('.ipynb')[0]
 
-        # Add space between Tutorial and number
+        # Add space between MiniUnit and number
         if 'MiniUnit' in notebook_name:
             notebook_name = f"Mini Unit {notebook_name.split('MiniUnit')[1]}"
         colab_badge = make_colab_badge(local_path)
