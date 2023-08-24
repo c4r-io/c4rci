@@ -179,7 +179,7 @@ def write_badge_table(notebooks):
 
     # Get ordered list of file names
     notebook_list = [name for name in notebooks if 'Intro' in name]
-    notebook_list += [name for name in notebooks if 'Tutorial' in name]
+    notebook_list += [name for name in notebooks if 'MiniUnit' in name]
     notebook_list += [name for name in notebooks if 'Outro' in name]
 
     # Add badges
