@@ -495,7 +495,7 @@ def test_redirect_colab_badge_to_main_branch():
 
     original = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "default-repo/blob/C1U1-updates/units/C1U1_ModelTypes/"
+        "sample-publishing/blob/C1U1-updates/units/C1U1_ModelTypes/"
         "C1U1_MiniUnit1.ipynb\""
     )
     cell = {"source": original}
@@ -503,7 +503,7 @@ def test_redirect_colab_badge_to_main_branch():
 
     expected = (
         "\"https://colab.research.google.com/github/c4r-io/"
-        "default-repo/blob/main/units/C1U1_ModelTypes/"
+        "sample-publishing/blob/main/units/C1U1_ModelTypes/"
         "C1U1_MiniUnit1.ipynb\""
     )
 
